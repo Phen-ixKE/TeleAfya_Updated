@@ -1,12 +1,11 @@
-
 const { DataTypes } = require('sequelize');
-const sequelize = require('../../db/appointment_management'); 
+const sequelize = require('../../db/appointment_management');
 
-const AppointmentBooking=sequelize.define('appointment_booking',{
-    appointmentId:{
-        type:DataTypes.STRING,
-        primaryKey:true,
-        allowNull:false
+const AppointmentBooking = sequelize.define('appointment_booking', {
+    appointmentId: {
+        type: DataTypes.STRING,
+        primaryKey: true,
+        allowNull: false
     },
     doctorId: {
         type: DataTypes.STRING,
@@ -16,45 +15,45 @@ const AppointmentBooking=sequelize.define('appointment_booking',{
         // },
         allowNull: true
     },
-    bookFor:{
-        type:DataTypes.STRING,
-        allowNull:false
+    bookFor: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
-    service:{
-        type:DataTypes.STRING,
-        allowNull:false
+    service: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
-    appointmentType:{
-        type:DataTypes.STRING,
-        allowNull:false
+    appointmentType: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
-    name:{
-        type:DataTypes.STRING,
-        allowNull:false
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
-    phoneNumber:{
-        type:DataTypes.STRING,
-        allowNull:false,
+    phoneNumber: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
-    idNumber:{
-        type:DataTypes.STRING,
-        allowNull:false
+    idNumber: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
     email: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    gender:{
-        type:DataTypes.STRING,
-        allowNull:false
+    gender: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
-    age:{
-        type:DataTypes.INTEGER,
-        allowNull:false
+    age: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
-    appointmentStatus:{
-        type:DataTypes.STRING,
-        defaultValue:'pending'
+    appointmentStatus: {
+        type: DataTypes.STRING,
+        defaultValue: 'pending'
     },
     paymentStatus: {
         type: DataTypes.STRING,
@@ -62,15 +61,15 @@ const AppointmentBooking=sequelize.define('appointment_booking',{
     },
     residence: {
         type: DataTypes.STRING,
-        allowNull:false
+        allowNull: false
     },
     appointmentDate: {
         type: DataTypes.DATEONLY,
-        allowNull:true
+        allowNull: true
     },
     appointmentTime: {
         type: DataTypes.TIME,
-        allowNull:true
+        allowNull: true
     },
     meetingVia: {
         type: DataTypes.ENUM('Zoom', 'Phone', 'Video Conference'),
@@ -80,15 +79,14 @@ const AppointmentBooking=sequelize.define('appointment_booking',{
         type: DataTypes.STRING,
         allowNull: true
     },
-    meetingLink:{
-        type:DataTypes.TEXT,
-        allowNull:true
+    meetingLink: {
+        type: DataTypes.TEXT,
+        allowNull: true
     },
     passcode: {
         type: DataTypes.STRING,
         allowNull: true
     }
 });
-
 
 module.exports = AppointmentBooking;

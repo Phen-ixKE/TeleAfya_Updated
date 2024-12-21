@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const { chpManagementDb } = require('../../config/database');
+const sequelize = require('../../db/user_management');
 
-const Chp = chpManagementDb.define('chps', {
+const Chp = sequelize.define('chps', {
   chp_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -50,11 +50,11 @@ const Chp = chpManagementDb.define('chps', {
 // Test database connection
 async function testConnection() {
   try {
-    await chpManagementDb.authenticate();
+    await sequelize.authenticate();
     console.log('CHP Model: Database connection established successfully.');
     
     // Sync the model with the database
-    await chpManagementDb.sync({ alter: true });
+    await sequelize.sync({ alter: true });
     console.log('CHP Model: Table synchronized successfully');
   } catch (error) {
     console.error('Unable to connect to the database:', error);

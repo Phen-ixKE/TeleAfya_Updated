@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const { appointmentManagementDb } = require('../config/database');
+const sequelize = require('../db/user_management');
 
-const Appointment = appointmentManagementDb.define('appointments', {
+const Appointment = sequelize.define('appointments', {
   appointment_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -45,10 +45,10 @@ const Appointment = appointmentManagementDb.define('appointments', {
 
 async function testConnection() {
   try {
-    await appointmentManagementDb.authenticate();
+    await sequelize.authenticate();
     console.log('Appointment Model: Database connection established successfully.');
     
-    await appointmentManagementDb.sync({ alter: true });
+    await sequelize.sync({ alter: true });
     console.log('Appointment Model: Table synchronized successfully');
   } catch (error) {
     console.error('Unable to connect to the database:', error);

@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const { paymentAndBillingDb } = require('../config/database');
+const sequelize = require('../db/user_management');
 
-const Payment = paymentAndBillingDb.define('payments', {
+const Payment = sequelize.define('payments', {
   payment_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -40,7 +40,7 @@ const Payment = paymentAndBillingDb.define('payments', {
   timestamps: true
 });
 
-const Invoice = paymentAndBillingDb.define('invoices', {
+const Invoice = sequelize.define('invoices', {
   invoice_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -79,7 +79,7 @@ const Invoice = paymentAndBillingDb.define('invoices', {
   timestamps: true
 });
 
-const TransactionHistory = paymentAndBillingDb.define('transaction_history', {
+const TransactionHistory = sequelize.define('transaction_history', {
   transaction_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -117,10 +117,10 @@ TransactionHistory.belongsTo(Payment, { foreignKey: 'payment_id' });
 
 async function testConnection() {
   try {
-    await paymentAndBillingDb.authenticate();
+    await sequelize.authenticate();
     console.log('Payment Model: Database connection established successfully.');
     
-    await paymentAndBillingDb.sync({ alter: true });
+    await sequelize.sync({ alter: true });
     console.log('Payment Model: Tables synchronized successfully');
   } catch (error) {
     console.error('Unable to connect to the database:', error);

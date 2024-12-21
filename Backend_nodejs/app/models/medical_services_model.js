@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const { medicalServicesDb } = require('../config/database');
+const sequelize = require('../db/user_management');
 
-const MedicalService = medicalServicesDb.define('medical_services', {
+const MedicalService = sequelize.define('medical_services', {
   service_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -35,7 +35,7 @@ const MedicalService = medicalServicesDb.define('medical_services', {
   timestamps: true
 });
 
-const DoctorSpecialization = medicalServicesDb.define('doctor_specializations', {
+const DoctorSpecialization = sequelize.define('doctor_specializations', {
   specialization_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -67,10 +67,10 @@ const DoctorSpecialization = medicalServicesDb.define('doctor_specializations', 
 
 async function testConnection() {
   try {
-    await medicalServicesDb.authenticate();
+    await sequelize.authenticate();
     console.log('Medical Services Model: Database connection established successfully.');
     
-    await medicalServicesDb.sync({ alter: true });
+    await sequelize.sync({ alter: true });
     console.log('Medical Services Model: Tables synchronized successfully');
   } catch (error) {
     console.error('Unable to connect to the database:', error);

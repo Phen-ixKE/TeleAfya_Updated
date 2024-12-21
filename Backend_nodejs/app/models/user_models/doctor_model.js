@@ -2,8 +2,8 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../../db/user_management'); // Exporting database connection from db.js
 const AppointmentBooking=require ('../appointment_model/appointment_booking_model')
 
-
-const Doctor = sequelize.define('Doctor', {
+// Define the Doctor model
+const Doctor = sequelize.define('doctors', {
   doctorId:{
     type:DataTypes.STRING,
     allowNull:true,
@@ -102,5 +102,5 @@ backgroundImage: {
 }
 });
 
-
+// Export the Doctor model
 module.exports = Doctor;

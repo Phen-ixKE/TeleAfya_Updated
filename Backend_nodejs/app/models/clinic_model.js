@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const { teleafyaClinicsDb } = require('../config/database');
+const sequelize = require('../db/user_management');
 
-const Clinic = teleafyaClinicsDb.define('clinics', {
+const Clinic = sequelize.define('clinics', {
   clinic_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -42,7 +42,7 @@ const Clinic = teleafyaClinicsDb.define('clinics', {
   timestamps: true
 });
 
-const ClinicStaff = teleafyaClinicsDb.define('clinic_staff', {
+const ClinicStaff = sequelize.define('clinic_staff', {
   staff_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -72,7 +72,7 @@ const ClinicStaff = teleafyaClinicsDb.define('clinic_staff', {
   timestamps: true
 });
 
-const ClinicEquipment = teleafyaClinicsDb.define('clinic_equipment', {
+const ClinicEquipment = sequelize.define('clinic_equipment', {
   equipment_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -114,10 +114,10 @@ ClinicEquipment.belongsTo(Clinic, { foreignKey: 'clinic_id' });
 
 async function testConnection() {
   try {
-    await teleafyaClinicsDb.authenticate();
+    await sequelize.authenticate();
     console.log('Clinic Model: Database connection established successfully.');
     
-    await teleafyaClinicsDb.sync({ alter: true });
+    await sequelize.sync({ alter: true });
     console.log('Clinic Model: Tables synchronized successfully');
   } catch (error) {
     console.error('Unable to connect to the database:', error);

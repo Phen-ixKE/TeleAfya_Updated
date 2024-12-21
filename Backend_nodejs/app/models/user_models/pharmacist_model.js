@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../db/user_management'); // Exporting database connection from db.js
 
-const Pharmacist = sequelize.define('Pharmacist', {
+const Pharmacist = sequelize.define('pharmacists', {
   doctorId:{
     type:DataTypes.STRING,
     allowNull:true,
@@ -92,5 +92,5 @@ const Pharmacist = sequelize.define('Pharmacist', {
   }
 });
 
-
+// Exporting the model
 module.exports = Pharmacist;

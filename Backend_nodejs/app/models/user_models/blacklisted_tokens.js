@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../db/user_management'); 
 
-const RefreshTokenBlacklist = sequelize.define('RefreshTokenBlacklist', {
+const BlacklistedToken = sequelize.define('blacklisted_tokens', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -18,4 +18,4 @@ const RefreshTokenBlacklist = sequelize.define('RefreshTokenBlacklist', {
   }
 }, {});
 
-module.exports = RefreshTokenBlacklist;
+module.exports = BlacklistedToken;

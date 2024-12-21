@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const { ePharmacyDb } = require('../config/database');
+const sequelize = require('../db/user_management');
 
-const Medication = ePharmacyDb.define('medications', {
+const Medication = sequelize.define('medications', {
   medication_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -44,7 +44,7 @@ const Medication = ePharmacyDb.define('medications', {
   timestamps: true
 });
 
-const PharmacyOrder = ePharmacyDb.define('pharmacy_orders', {
+const PharmacyOrder = sequelize.define('pharmacy_orders', {
   order_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -74,7 +74,7 @@ const PharmacyOrder = ePharmacyDb.define('pharmacy_orders', {
   timestamps: true
 });
 
-const OrderItem = ePharmacyDb.define('order_items', {
+const OrderItem = sequelize.define('order_items', {
   item_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -108,10 +108,10 @@ Medication.hasMany(OrderItem, { foreignKey: 'medication_id' });
 
 async function testConnection() {
   try {
-    await ePharmacyDb.authenticate();
+    await sequelize.authenticate();
     console.log('E-Pharmacy Model: Database connection established successfully.');
     
-    await ePharmacyDb.sync({ alter: true });
+    await sequelize.sync({ alter: true });
     console.log('E-Pharmacy Model: Tables synchronized successfully');
   } catch (error) {
     console.error('Unable to connect to the database:', error);

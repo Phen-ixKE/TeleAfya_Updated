@@ -1,9 +1,10 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize } = require('sequelize');
 
 // Database connection configuration
 const sequelize = new Sequelize('chp_management', 'teleafyabackend', 'teleafyabackend', {
   host: 'localhost',
   dialect: 'mysql',
+  logging: false // disable logging
 });
 
 // Define Community Health Provider Model
@@ -142,8 +143,7 @@ HealthEducationSession.belongsTo(CommunityHealthProvider, { foreignKey: 'chp_id'
 async function testConnection() {
   try {
     await sequelize.authenticate();
-    console.log('CHP Management database connection established successfully.');
-    
+    console.log('CHP Management Database connection has been established successfully.');
     // Sync all models with the database
     await sequelize.sync({ alter: true });
     console.log('CHP Management tables synchronized successfully');
@@ -152,7 +152,9 @@ async function testConnection() {
   }
 }
 
-// Export the models and connection
+testConnection();
+
+// Export the sequelize instance
 module.exports = {
   sequelize,
   CommunityHealthProvider,

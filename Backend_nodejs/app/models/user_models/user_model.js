@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const { userManagementDb } = require('../../config/database');
+const sequelize = require('../../db/user_management');
 
-const User = userManagementDb.define('users', {
+const User = sequelize.define('users', {
   user_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -56,10 +56,10 @@ const User = userManagementDb.define('users', {
 
 async function testConnection() {
   try {
-    await userManagementDb.authenticate();
+    await sequelize.authenticate();
     console.log('User Model: Database connection established successfully.');
     
-    await userManagementDb.sync({ alter: true });
+    await sequelize.sync({ alter: true });
     console.log('User Model: Table synchronized successfully');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
